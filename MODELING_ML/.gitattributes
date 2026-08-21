@@ -1,0 +1,6 @@
+# Ignorar archivos o documentación para que no sumen al porcentaje de R
+*.Rproj linguist-documentation
+*.Rdata linguist-vendored
+
+# O forzar a que cierta carpeta se detecte como Python si usas Jupyter Notebooks
+*.ipynb linguist-language=Python
