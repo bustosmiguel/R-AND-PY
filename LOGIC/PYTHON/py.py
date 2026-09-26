@@ -862,4 +862,97 @@ for f in archivos_en_carpeta + ["modelo.rds"]:
 # 10x más rápido y reduce el tamaño de almacenamiento más de un 80%.
 
 
-#
+# %%
+
+# ==============================================================================
+# EVALUACIÓN DE PERFIL CON TODOS LOS OPERADORES LÓGICOS EN PYTHON
+# ==============================================================================
+
+
+class EvaluadorPerfil:
+    def __init__(
+        self, nombre: str, apellido: str, edad: int, exitos: int, fracasos: int
+    ):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.edad = edad
+        self.exitos = exitos
+        self.fracasos = fracasos
+
+        # --- 1. OPERADORES DE COMPARACIÓN DE VALOR ---
+        c1 = self.edad == 18  # ==  (Igualdad)
+        c2 = self.fracasos != 0  # !=  (Desigualdad)
+        c3 = self.exitos > 5  # >   (Mayor que)
+        c4 = self.fracasos < 3  # <   (Menor que)
+        c5 = self.edad >= 18  # >=  (Mayor o igual que)
+        c6 = self.exitos <= 10  # <=  (Menor o igual que)
+
+        # --- 2. OPERADORES LÓGICOS BOOLEANOS (ESCALARES) ---
+        c7 = c5 and c4  # and (Y lógico / Conjunción)
+        c8 = c3 or c2  # or  (O lógico / Disyunción)
+        c9 = not c2  # not (Negación lógica)
+
+        # --- 3. OPERADORES DE PERTENENCIA ---
+        c10 = "a" in self.nombre.lower()  # in     (Pertenencia)
+        c11 = "z" not in self.apellido.lower()  # not in (Alineación de no pertenencia)
+
+        # --- 4. OPERADORES DE IDENTIDAD EN MEMORIA ---
+        c12 = self.nombre is not None  # is not (Identidad negada)
+        c13 = True is True  # is     (Identidad exacta)
+
+        # --- 5. RESUMEN DE COMPROBACIÓN COLECTIVA ---
+        c14 = all([c5, c12, c13])  # all() (Evalúa si TODOS los elementos son True)
+        c15 = any([c1, c3, c8])  # any() (Evalúa si AL MENOS UNO es True)
+
+        # --- 6. ASIGNACIÓN CONDICIONAL Y ESTRUCTURAS ---
+        # Operador Ternario (A if cond else B)
+        self.estatus = "Experto" if (self.exitos > self.fracasos) else "Principiante"
+
+        # Estructura Clasica: if, elif, else
+        if self.edad < 18:
+            self.categoria = "Menor de edad"
+        elif self.edad >= 18 and self.exitos > 0:  # and combinado con >= y >
+            self.categoria = "Adulto Activo"
+        else:  # else final
+            self.categoria = "Adulto Inactivo"
+
+        # Pattern Matching: match / case (Python 3.10+)
+        match self.estatus:
+            case "Experto":
+                self.nivel = "Avanzado"
+            case "Principiante":
+                self.nivel = "Básico"
+            case _:  # Caso por defecto
+                self.nivel = "Indefinido"
+
+        # --- 7. OPERADORES BITWISE Y VECTORIALES (A Nivel de Bits / Arreglos) ---
+        b1 = (self.exitos > 0) & (self.fracasos == 0)  # & (AND bitwise)
+        b2 = (self.exitos > 5) | (self.edad >= 18)  # | (OR bitwise)
+        b3 = ~(self.edad < 18)  # ~ (NOT bitwise / Inversión de bits)
+        b4 = (self.exitos > 0) ^ (self.fracasos > 0)  # ^ (XOR bitwise / O Exclusivo)
+
+        # Validación estricta
+        assert self.edad >= 0, "La edad no puede ser negativa"
+
+    def mostrar_dictamen(self):
+        print("\n=== DICTAMEN FINAL DE EVALUACIÓN ===")
+        print(f"Candidato: {self.nombre} {self.apellido}")
+        print(f"Edad: {self.edad} | Éxitos: {self.exitos} | Fracasos: {self.fracasos}")
+        print(
+            f"Estatus: {self.estatus} | Categoría: {self.categoria} | Nivel: {self.nivel}"
+        )
+
+
+# --- CONSULTA INTERACTIVA POR CONSOLA ---
+print("=== INGRESO DE DATOS DEL CANDIDATO (PYTHON) ===")
+input_nom = input("Ingrese Nombre: ")
+input_ape = input("Ingrese Apellido: ")
+input_edad = int(input("Ingrese Edad: "))
+input_ex = int(input("Ingrese Número de Éxitos: "))
+input_fr = int(input("Ingrese Número de Fracasos: "))
+
+candidato = EvaluadorPerfil(input_nom, input_ape, input_edad, input_ex, input_fr)
+candidato.mostrar_dictamen()
+
+
+# %%

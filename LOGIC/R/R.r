@@ -4,7 +4,29 @@
 # el cemento (operadores de comparación)
 # y los planos (estructuras de control).
 
+
+# MiB ---------------------------------------------------------------------
+
+# 263 MiB) es el indicador de uso de memoria RAM de RStudio. 
+# Realmente 263 MiB es un consumo muy bajo y saludable para un entorno de trabajo 
+# (generalmente empieza a ser preocupante cuando supera varios Gigabytes 
+# y ralentiza la laptop).
+# si el indicador se pone en rojo o quieres liberar y optimizar la RAM 
+# Aquí tienes las soluciones principales:
+
+# 1. Elimina variables específicas que ya no necesites
+rm(dataframe_gigante, modelo_pesado)
+
+# 2. O limpia TODO el entorno de trabajo
+rm(list = ls())
+
+# 3. Fuerza a R a liberar la memoria retenida al sistema operativo
+gc()
+gc
+
+
 # Notas -------------------------------------------------------------------
+
 
 # 1. El then en R es "{}" y en python los ":".
 # 2. = (Asignación): Se usa para guardar un valor en una variable (ej. x = 10).
@@ -14,6 +36,9 @@
 # valor que no existe (NA) no puede ser comparado con nada, ni siquiera con 
 # otro NA. Por eso inventaron la función is.na()
 # Cuando un código falle, en la consola: traceback() muestra la ruta del crimen.
+
+
+
 library(tidyverse)
 df_practica %>% View()
 # DATASET df_practica -----------------------------------------------------------------
@@ -1538,3 +1563,85 @@ Error: el reemplazo tiene X filas, los datos tienen Y
 # Por qué ocurre: Intentas meter una columna de 10 datos en una tabla que tiene solo 5 filas. No encajan.
 
 
+
+# CAUSA, EFECTO Y CONDICIONES DE EXISTENCIA -------------------------------
+
+
+
+# ==============================================================================
+# SISTEMA INTERACTIVO DE EVALUACIÓN CAUSAL EN R
+# ==============================================================================
+
+
+# ==============================================================================
+# EVALUACIÓN DE PERFIL CON TODOS LOS OPERADORES LÓGICOS EN R
+# ==============================================================================
+# ==============================================================================
+# EVALUACIÓN INTERACTIVA PASO A PASO EN R
+# ==============================================================================
+
+library(dplyr)
+
+ejecutar_evaluacion <- function() {
+  cat("=== INGRESO DE DATOS DEL CANDIDATO (R) ===\n\n")
+  
+  # Cada readline detiene el programa hasta que presionas Enter
+  nombre   <- readline(prompt = "1. Ingrese Nombre: ")
+  apellido <- readline(prompt = "2. Ingrese Apellido: ")
+  edad     <- as.integer(readline(prompt = "3. Ingrese Edad: "))
+  exitos   <- as.integer(readline(prompt = "4. Ingrese Número de Éxitos: "))
+  fracasos <- as.integer(readline(prompt = "5. Ingrese Número de Fracasos: "))
+  
+  # --- EVALUACIÓN DE OPERADORES LÓGICOS ---
+  c1 <- (edad == 18)        # ==  (Igualdad)
+  c2 <- (fracasos != 0)     # !=  (Desigualdad)
+  c3 <- (exitos > 5)        # >   (Mayor que)
+  c4 <- (fracasos < 3)      # <   (Menor que)
+  c5 <- (edad >= 18)        # >=  (Mayor o igual que)
+  c6 <- (exitos <= 10)      # <=  (Menor o igual que)
+  
+  c7 <- c5 && c4            # &&  (Y escalar)
+  c8 <- c3 || c2            # ||  (O escalar)
+  
+  c9 <- !(fracasos > 5)     # !   (Negación)
+  c10 <- "a" %in% strsplit(tolower(nombre), "")[[1]] # %in% (Pertenencia)
+  
+  `%nin%` <- Negate(`%in%`) # Custom operator
+  c11 <- "z" %nin% strsplit(tolower(apellido), "")[[1]] # %nin% (No pertenencia)
+  
+  c12 <- is.null(nombre)    # is.null
+  c13 <- is.na(edad)        # is.na
+  
+  c14 <- all(c(c5, !c12, !c13)) # all()
+  c15 <- any(c(c1, c3, c8))     # any()
+  
+  # Estructuras condicionales
+  estatus <- ifelse(exitos > fracasos, "Experto", "Principiante")
+  
+  if (edad < 18) {
+    categoria <- "Menor de edad"
+  } else if (edad >= 18 && exitos > 0) {
+    categoria <- "Adulto Activo"
+  } else {
+    categoria <- "Adulto Inactivo"
+  }
+  
+  dictamen_final <- case_when(
+    exitos > fracasos & edad >= 18 ~ "Aprobado con Distinción",
+    exitos == fracasos             ~ "En Observación",
+    fracasos > exitos | edad < 18  ~ "No Elegible",
+    TRUE                           ~ "Estado Indeterminado"
+  )
+  
+  # IMPRESIÓN DEL RESULTADO FINAL
+  cat("\n==========================================\n")
+  cat("=== DICTAMEN FINAL DE EVALUACIÓN (R) ===\n")
+  cat("==========================================\n")
+  cat("Candidato:", nombre, apellido, "\n")
+  cat("Edad:", edad, "| Éxitos:", exitos, "| Fracasos:", fracasos, "\n")
+  cat("Estatus:", estatus, "| Categoría:", categoria, "| Dictamen:", dictamen_final, "\n")
+}
+
+# --- PARA EJECUTARLO EN LA CONSOLA ---
+# Solo llamas a la función:
+ejecutar_evaluacion()
