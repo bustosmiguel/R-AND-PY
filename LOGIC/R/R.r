@@ -1,3 +1,75 @@
+# Aritmética Básica (Límite Discreto):
+# Suma
+# Resta
+
+# Aritmética Escalar (Repetición):
+# Multiplicación
+# División
+
+# Álgebra Exponencial (Escalamiento):
+# Potenciación
+# Radicación (Raíces)
+# Logaritmos
+
+# Cálculo Infinitesimal (Continuo y Cambio):
+# Derivación
+# Integración
+
+
+
+#%%
+
+# Variables numéricas
+a <- 12
+b <- 4
+
+# 1. SUMA
+res_suma <- a + b           # 16
+
+# 2. RESTA
+res_resta <- a - b         # 8
+
+# 3. MULTIPLICACIÓN
+res_mult <- a * b          # 48
+
+# 4. DIVISIÓN
+res_div <- a / b           # 3
+
+# 5. RADICACIÓN (RAÍCES)
+raiz_cuadrada <- sqrt(16)  # 4
+raiz_cubica <- 27^(1/3)    # 3
+
+# 6. LOGARITMOS
+log_natural <- log(exp(1)) # ln(e) = 1
+log_base10 <- log10(100)   # log10(100) = 2
+
+
+# --- CÁLCULO EN R ---
+
+# 7. DERIVACIÓN (Derivar)
+f_expr <- expression(3*x^2 + 5*x - 2)
+derivada <- D(f_expr, "x")  # Resultado analítico: 3 * (2 * x) + 5 -> 6x + 5
+
+# Evaluar la derivada en x = 2
+x <- 2
+val_derivada <- eval(derivada) # 6(2) + 5 = 17
+
+
+# 8. INTEGRACIÓN (Integrar)
+f_func <- function(x) { 3*x^2 + 5*x - 2 }
+integral_definida <- integrate(f_func, lower = 0, upper = 2) # Resultado: 14
+
+
+# Imprimir resultados
+cat("=== R ===\n")
+cat("Suma:", res_suma, "| Resta:", res_resta, "\n")
+cat("Multiplicación:", res_mult, "| División:", res_div, "\n")
+cat("Raíz Cuadrada de 16:", raiz_cuadrada, "| Raíz Cúbica de 27:", raiz_cubica, "\n")
+cat("Log10(100):", log_base10, "\n")
+cat("Derivada analítica:", deparse(derivada), "\n")
+cat("Valor de la derivada en x=2:", val_derivada, "\n")
+cat("Integral definida (0 a 2):", integral_definida$value, "\n")
+
 # ARSENAL DE COMPARACIONES EN R -> DESARROLLADOR EN R
 
 # base sólida: ladrillos (variables), 

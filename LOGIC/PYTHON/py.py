@@ -1,4 +1,77 @@
 # %%
+
+# Aritmética Básica (Límite Discreto):
+# Suma
+# Resta
+
+# Aritmética Escalar (Repetición):
+# Multiplicación
+# División
+
+# Álgebra Exponencial (Escalamiento):
+# Potenciación
+# Radicación (Raíces)
+# Logaritmos
+
+# Cálculo Infinitesimal (Continuo y Cambio):
+# Derivación
+# Integración
+
+# %%
+
+import math
+import sympy as sp
+
+# Variables numéricas para aritmética básica
+a = 12
+b = 4
+
+# %%
+# 1. SUMA
+res_suma = a + b  # 16
+
+# 2. RESTA
+res_resta = a - b  # 8
+
+# 3. MULTIPLICACIÓN
+res_mult = a * b  # 48
+
+# 4. DIVISIÓN
+res_div = a / b  # 3.0
+
+# 5. RADICACIÓN (RAÍCES)
+raiz_cuadrada = math.sqrt(16)  # 4.0
+raiz_cubica = 27 ** (1 / 3)  # 3.0
+
+# 6. LOGARITMOS
+log_natural = math.log(e_val := math.e)  # ln(e) = 1.0
+log_base10 = math.log10(100)  # log10(100) = 2.0
+
+# %%
+# --- CÁLCULO SIMBÓLICO CON SYMPY ---
+x = sp.Symbol("x")
+f = 3 * x**2 + 5 * x - 2  # Función: f(x) = 3x² + 5x - 2
+
+
+# %%
+# 7. DERIVACIÓN (Derivar)
+derivada = sp.diff(f, x)  # Resultado: 6x + 5
+
+# 8. INTEGRACIÓN (Integrar)
+integral_indefinida = sp.integrate(f, x)  # Resultado: x³ + (5/2)x² - 2x
+integral_definida = sp.integrate(f, (x, 0, 2))  # Evaluada entre 0 y 2: 14.0
+
+# Imprimir resultados
+print("=== PYTHON ===")
+print(f"Suma: {res_suma} | Resta: {res_resta}")
+print(f"Multiplicación: {res_mult} | División: {res_div}")
+print(f"Raíz Cuadrada de 16: {raiz_cuadrada} | Raíz Cúbica de 27: {raiz_cubica}")
+print(f"Log10(100): {log_base10}")
+print(f"Derivada de (3x² + 5x - 2): {derivada}")
+print(f"Integral definida (0 a 2) de (3x² + 5x - 2): {integral_definida}")
+
+
+# %%
 # NIVEL 1: ASIGNACIÓN Y COMPARACIÓN BÁSICA
 
 # El error más común es confundir = (asignar) con == (comparar)
